@@ -4,6 +4,7 @@
     <ul class="mui-table-view">
       <li class="mui-table-view-cell mui-media" v-for="item in list" :key="item.id">
         <router-link :to="`/home/newinfo/${item.id}`">
+        
           <img
             class="mui-media-object mui-pull-left"
             :src="item.img_url"
@@ -69,5 +70,8 @@ export default {
     }
    
   }
+}
+a{
+  text-decoration:none;
 }
 </style>

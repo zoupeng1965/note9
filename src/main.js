@@ -36,9 +36,11 @@ import "./comment/comment.css"
 
 // 1. 导入 评论子组件
 import pl from "./page/pinglun.vue";
-Vue.component("pl",pl)
+Vue.component("com",pl)
 
-
+// 引入缩略图插件
+import VuePreview from 'vue-pic-preview'
+Vue.use(VuePreview)
 
 
 

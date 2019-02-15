@@ -10,7 +10,7 @@
           <!-- 内容区域 -->
     <div class="content" v-html="info.content"></div>
 
-    <pl></pl>
+    <com :text="this.id"></com>
     </div>
 </template>
 

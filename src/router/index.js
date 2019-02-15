@@ -8,6 +8,8 @@ import shopcar from '@/page/shopcar'
 import search from '@/page/search'
 import newlist from '@/page/newlist'
 import newinfo from '@/page/newinfo'
+import photo from '@/page/photo'
+import photoinfo from '@/page/photoinfo'
 
 Vue.use(Router)
 
@@ -51,6 +53,16 @@ export default new Router({
       path: "/home/newinfo/:id",
       name: "newinfo",
       component: newinfo
+    },
+    {
+      path: "/home/photo",
+      // name: "newinfo",
+      component: photo
+    },
+    {
+      path: "/home/photoinfo/:id",
+      
+      component: photoinfo
     },
   ],
   linkActiveClass: 'mui-active'// 覆盖默认的路由高亮的类，默认的类叫做 router-link-active
