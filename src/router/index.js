@@ -10,6 +10,10 @@ import newlist from '@/page/newlist'
 import newinfo from '@/page/newinfo'
 import photo from '@/page/photo'
 import photoinfo from '@/page/photoinfo'
+import goodlist from '@/page/goodlist'
+import goodinfo from '@/page/goodinfo'
+import gooddesc from '@/page/gooddesc'
+import goodscomment from '@/page/goodscomment'
 
 Vue.use(Router)
 
@@ -63,6 +67,26 @@ export default new Router({
       path: "/home/photoinfo/:id",
       
       component: photoinfo
+    },
+    {
+      path: "/home/goodlist",
+      
+      component: goodlist
+    },
+    {
+      path: "/home/goodinfo/:id",
+      
+      component: goodinfo
+    },
+    {
+      path: "/home/gooddesc/:id",
+      
+      component: gooddesc
+    },
+    {
+      path: "/home/goodscomment/:id",
+      
+      component: goodscomment
     },
   ],
   linkActiveClass: 'mui-active'// 覆盖默认的路由高亮的类，默认的类叫做 router-link-active

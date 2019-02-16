@@ -38,6 +38,10 @@ import "./comment/comment.css"
 import pl from "./page/pinglun.vue";
 Vue.component("com",pl)
 
+// 导入轮播图插件
+import swipe from "./page/swipre.vue";
+Vue.component("swipe",swipe)
+
 // 引入缩略图插件
 import VuePreview from 'vue-pic-preview'
 Vue.use(VuePreview)

@@ -3,13 +3,16 @@
     <h2>我是home</h2>
 
 <!-- 轮播图区域 -->
-    <mt-swipe :auto="4000">
+
+<swipe :lbtsj=lbtsj></swipe>
+
+    <!-- <mt-swipe :auto="4000"> -->
         <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
-      <mt-swipe-item v-for="(item,index) of lbtsj" :key=index>
+      <!-- <mt-swipe-item v-for="(item,index) of lbtsj" :key=index>
           <img :src="item.img" alt="">
       </mt-swipe-item>
       
-    </mt-swipe>
+    </mt-swipe> -->
 
     <!-- 九宫格区域 -->
     <div class="mui-content">
@@ -20,9 +23,9 @@
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photo">
 		                    <img src="@/assets/menu2.png" alt="">
 		                    <div class="mui-media-body">图片分享</div></router-link></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/goodlist">
 		                    <img src="@/assets/menu3.png" alt="">
-		                    <div class="mui-media-body">商品购买</div></a></li>
+		                    <div class="mui-media-body">商品购买</div></router-link></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 		                   <img src="@/assets/menu4.png" alt="">
 		                    <div class="mui-media-body">留言反馈</div></a></li>
