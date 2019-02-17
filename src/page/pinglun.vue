@@ -1,5 +1,6 @@
 <template>
     <div class="pinglun">
+    这是品论
         <h2>发表评论</h2>
         <hr>
         <textarea v-model="msg" name="" id="" cols="30" rows="10" placeholder="请输入要BBB的内容" maxlength="120"></textarea>
