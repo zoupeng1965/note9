@@ -37,14 +37,14 @@
 
             <span class="gmsl-span">购买数量:</span>
             <div class="mui-numbox" data-numbox-step="1" data-numbox-min="0" data-numbox-max="100">
-              <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
-              <input class="mui-numbox-input" type="number">
+              <button class="mui-btn mui-numbox-btn-minus" type="button"  >-</button>
+              <input class="mui-numbox-input" type="number" ref="text" value="1" @change="countChanged">
               <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
             </div>
           </div>
           <div>
             <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small" @click="flag = !flag">加入购物车</mt-button>
+            <mt-button type="danger" size="small" @click="gediq">加入购物车</mt-button>
           </div>
         </div>
       </div>
@@ -78,15 +78,29 @@ export default {
       id: this.$route.params.id,
       lbtsj: [],
       info: {},
-      flag: false
+      flag: false,
+      flagg:false,
+      count:1
+      // count:1
+      // selected:true
     };
   },
   created() {
     this.geilist();
     this.geiinfo();
+
   },
+  // mounted() {
+  //   // console.log(this.$refs.text.value)
+  //   this.count=this.$refs.text.value*1
+  //   console.log(this.$refs.text.value*1)
+  //   console.log(this.count,22)
+  // },
 
   methods: {
+   countChanged(){
+this.count=this.$refs.text.value*1
+   },
     geilist() {
       this.$http.get("api/getthumimages/" + this.id).then(res => {
         if (res.body.status == 0) {
@@ -120,17 +134,17 @@ export default {
       el.offsetWidth;
       // 获取小球的 在页面中的位置
       const d1 = this.$refs.bill.getBoundingClientRect();
-      console.log(d1, 1111);
+      // console.log(d1, 1111);
 
       const d2 = document.getElementById("badge").getBoundingClientRect();
-      console.log(d2, 1111);
+      // console.log(d2, 1111);
 
       const dx = d2.left - d1.left;
       const dy = d2.top - d1.top;
 
       el.style.transform = `translate(${dx}px, ${dy}px)`;
 
-      el.style.transition = "all 1s cubic-bezier(.4,-0.3,1,.68)";
+      el.style.transition = "all 0.6s cubic-bezier(.4,-0.3,1,.68)";
       done();
     },
     afterEnter(el) {
@@ -141,6 +155,31 @@ export default {
     },
     pl(id){
          this.$router.push('/home/goodscomment/'+this.id)
+    },
+    gediq(){
+      if(!this.flagg){
+         this.flag = ! this.flag
+         this.flagg=true
+          setTimeout(() => {
+        this.flagg=false
+      }, 1000);
+         
+      }
+
+
+      // { id:商品的id, count: 要购买的数量, price: 商品的单价，selected: false  }
+      // 拼接出一个，要保存到 store 中 car 数组里的 商品信息对象
+      let goodinfo={
+        id:this.id,
+        count:this.count,
+        selected:true,
+        price:this.info.sell_price
+      }
+// 调用 store 中的 mutations 来将商品加入购物车
+// console.log(this.$store,55)
+    this.$store.commit("addlist", goodinfo)
+    //  this.$store.commit("addToCar", goodsinfo);
+    
     }
   }
 };

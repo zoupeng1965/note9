@@ -2,6 +2,7 @@
     <div class="good">
         <!-- <h2>我是good</h2> -->
         <div class="sj" v-for="item in list" :key="item.id" @click="tz(item.id)">
+
             <img :src="item.img_url" alt="">
             <h2>{{item.title}}</h2>
             <div class="sj-db">
@@ -32,6 +33,7 @@
 
 <script>
 export default {
+   
     data(){
         return {
             page:1,
