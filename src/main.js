@@ -46,6 +46,11 @@ Vue.component("swipe",swipe)
 import VuePreview from 'vue-pic-preview'
 Vue.use(VuePreview)
 
+// 引入vue-scroller
+
+import VueScroller from 'vue-scroller'
+Vue.use(VueScroller)
+
 // 引入vuex插件
 import Vuex from 'vuex'
 

@@ -1,8 +1,12 @@
 <template>
+<scroller ref="sc"  :on-refresh="refresh"
+  :on-infinite="infinite">
+
     <div class="good">
         <!-- <h2>我是good</h2> -->
+        
         <div class="sj" v-for="item in list" :key="item.id" @click="tz(item.id)">
-
+            
             <img :src="item.img_url" alt="">
             <h2>{{item.title}}</h2>
             <div class="sj-db">
@@ -23,12 +27,15 @@
                      </span>
                 </p>
             </div>
+            
         </div>
        
 
          <mt-button type="danger" size="large" plain class="button" @click="geimor">加载更多</mt-button>
 
     </div>
+    </scroller>
+
 </template>
 
 <script>
@@ -45,12 +52,17 @@ export default {
         // console.log(this.page,555)
     },
     methods: {
-        geilist(){
-             this.$http.get("api/getgoods?pageindex="+this.page).then(res=>{
+        geilist(infone){
+           return  this.$http.get("api/getgoods?pageindex="+this.page).then(res=>{
         
         if(res.body.status==0){
+            if(infone){
+
+            }else{
+                  this.list=this.list.concat(res.body.message)
+            }
         //   this.list=res.body.message
-        this.list=this.list.concat(res.body.message)
+      
          
         }
         
@@ -62,6 +74,23 @@ export default {
         },
         tz(id){
             this.$router.push('/home/goodinfo/'+id)
+        },
+        refresh(){
+            setTimeout(()=>{
+                 this.page=1
+           this.geilist(true).then(()=>{
+               this.$refs.sc.finishPullToRefresh()
+           })  
+            },2000)
+           
+        },
+        infinite(){
+            setTimeout(() => {
+        this.pageindex++;
+        this.geilist().then(() =>
+          this.$refs.sc.finishInfinite(this.list.length === 15)
+        );
+      }, 2000);
         }
     },
 }
@@ -72,7 +101,7 @@ export default {
 
 
 
-<style lang="less" scoped>
+<style lang="less" >
 .good{
     overflow: hidden;
     padding: 5px;
@@ -120,5 +149,11 @@ export default {
     .button{
         margin-top: 10px;
     }
+}
+.pull-to-refresh-layer{
+    margin-top: -20px !important;
+}
+._v-content {
+  padding-bottom: 40px !important;
 }
 </style>
